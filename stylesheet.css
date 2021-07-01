@@ -1,0 +1,40 @@
+ body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 37em;
+    width: 46em;
+}
+
+
+.main{
+    background-color: #cbcbcb;
+}
+
+.logo{
+    height: 10em;
+    width:10em
+}
+.mainPara{
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    padding: 21px;
+}
+
+.footer{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer p{
+    text-align: center;
+}
+.logoMain{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
