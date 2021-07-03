@@ -18,6 +18,7 @@ app.use(awsServerlessExpressMiddleware.eventContext());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+   res.header('Access-Control-Allow-Methods', '*');
   next();
 });
 
@@ -26,25 +27,25 @@ const transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // use SSL
   auth: {
-    user: process.env.user,
-    pass: process.env.pass
+    user: process.env.USER,
+    pass: process.env.PASS
   }
 });
 
 
-app.post("/CYContactUs", async(req, res) => {
+app.post("/cyemail", async(req, res) => {
   if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.message) {
     return res.status(400).json({ success: false, message: "Missing required parameters" })
   }
   transporter.sendMail({
-    from: process.env.user, // sender address
-    to: process.env.user, // list of receivers
+    from: process.env.USER, // sender address
+    to: process.env.USER, // list of receivers
     subject: `Message from ${req.body.firstName} ${req.body.lastName} at computing yard's website`, // Subject line
     html: ` ${req.body.message} <br/>
             `, // html body
   });
   transporter.sendMail({
-    from: process.env.user, // sender address
+    from: process.env.USER, // sender address
     to: `${req.body.email}`,
     subject: `Thank you ${req.body.firstName} ${req.body.lastName} `, // Subject line
     html: await readFile('./EmailTemplete.html'), // html body
