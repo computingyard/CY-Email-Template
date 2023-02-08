@@ -41,7 +41,7 @@ app.post("/cyemail", async(req, res) => {
     from: process.env.USER, // sender address
     to: process.env.USER, // list of receivers
     subject: `Message from ${req.body.firstName} ${req.body.lastName} at computing yard's website`, // Subject line
-    html: ` ${req.body.message} <br/>
+    html: `User Details are:  firstName: ${req.body.firstName} lastName: ${req.body.lastName} email:${req.body.email} <br/><br/>  ${req.body.message} <br/>
             `, // html body
   });
   transporter.sendMail({
